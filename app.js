@@ -42,7 +42,7 @@ const progress = document.querySelector("#progress");
 const announce = document.querySelector("#announcement");
 const state = {
   step: 0, caseId: "median", mode: "warning", referenceVisible: false,
-  referenceOpened: false, externalSelected: false, judgement: "", reason: ""
+  referenceOpened: false, judgement: "", reason: ""
 };
 const is = (a, b, attribute) => a === b ? " " + attribute : "";
 const heading = (rubric, content) =>
@@ -102,21 +102,8 @@ function paintEvidence(item) {
 }
 
 function assess(item) {
-  return `<section class="card primary assess-card" aria-labelledby="step-heading">
-    <div class="mobile-top">${heading("STEP 3  ·  " + item.name.toUpperCase(),item.question)}${answer(item)}</div>
-    <form id="review-form" novalidate>
-      <div class="mobile-bottom">
-        <fieldset aria-describedby="choice-error"><legend>Does the evidence support this answer?</legend>
-        ${JUDGEMENTS.map(choice => radio("judgement",choice,state.judgement)).join("")}
-        </fieldset>
-        <p id="choice-error" class="error" role="alert" hidden></p>
-        <label class="field" for="reason">What informed your choice? <span class="small">(optional)</span></label>
-        <select id="reason" name="reason"><option value="">Choose a reason</option>
-        ${REASONS.map((reason,index)=>`<option value="${index}"${is(String(index),state.reason,"selected")}>${reason}</option>`).join("")}</select>
-        <div class="actions"><button type="submit" class="button">See feedback <span aria-hidden="true">→</span></button>
-        ${control("setup","Back to setup",true)}</div>
-      </div>
-    </form>
+  return `<section class="card assess-claim" aria-labelledby="step-heading">
+    ${heading("STEP 3  ·  " + item.name.toUpperCase(),item.question)}${answer(item)}
   </section>
   <aside class="card aside" id="reference-card" aria-labelledby="reference-heading">
     <p class="eyebrow">INDEPENDENT SOURCE</p>
@@ -125,7 +112,18 @@ function assess(item) {
     <div class="actions"><button type="button" class="button secondary" data-action="reference" aria-expanded="false" aria-controls="evidence-content">Open reference</button></div>
     <p class="small" id="reference-status"></p>
     <div id="evidence-content" hidden></div>
-  </aside>`;
+  </aside>
+  <form id="review-form" class="card assess-choice" novalidate>
+    <fieldset aria-describedby="choice-error"><legend>Does the evidence support this answer?</legend>
+    ${JUDGEMENTS.map(choice => radio("judgement",choice,state.judgement)).join("")}
+    </fieldset>
+    <p id="choice-error" class="error" role="alert" hidden></p>
+    <label class="field" for="reason">What informed your choice? <span class="small">(optional)</span></label>
+    <select id="reason" name="reason"><option value="">Choose a reason</option>
+    ${REASONS.map((reason,index)=>`<option value="${index}"${is(String(index),state.reason,"selected")}>${reason}</option>`).join("")}</select>
+    <div class="actions"><button type="submit" class="button">See feedback <span aria-hidden="true">→</span></button>
+    ${control("setup","Back to setup",true)}</div>
+  </form>`;
 }
 
 function review(item) {
@@ -162,8 +160,7 @@ stage.addEventListener("submit", event => {
   if (event.target.id === "setup-form") {
     const caseId = form.get("case"), mode = form.get("mode");
     if (!Object.hasOwn(CASES,caseId) || !Object.hasOwn(MODES,mode)) return;
-    Object.assign(state,{caseId,mode,step:1,referenceVisible:false,referenceOpened:false,
-      externalSelected:false,judgement:"",reason:""});
+    Object.assign(state,{caseId,mode,step:1,referenceVisible:false,referenceOpened:false,judgement:"",reason:""});
     render();
   } else if (event.target.id === "review-form") {
     const judgement = form.get("judgement");
@@ -186,7 +183,6 @@ stage.addEventListener("change", event => {
   if (event.target.name === "judgement") document.querySelector("#choice-error").hidden = true;
 });
 stage.addEventListener("click", event => {
-  if (event.target.closest("#publisher-link")) state.externalSelected = true;
   const action = event.target.closest("[data-action]")?.dataset.action;
   if (action === "reference" && state.step === 2) {
     state.referenceVisible = !state.referenceVisible;

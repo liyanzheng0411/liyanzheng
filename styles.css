@@ -40,6 +40,9 @@ h1 { margin: 0; font-size: clamp(32px, 5vw, 49px); letter-spacing: -.052em; line
 .progress li[aria-current] { color: var(--accent-dark); font-weight: 740; background: var(--mint); border-color: #adcbbd; }
 .progress li[aria-current] span, .progress li.done span { color: var(--white); background: var(--accent); }
 .workspace { display: grid; grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.workspace:has(.assess-claim) .assess-choice { grid-column: 1; }
+.workspace:has(.assess-claim) .aside { grid-column: 2; grid-row: 1 / span 2; }
+.assess-choice fieldset { margin-top: 0; }
 .card { background: var(--white); border: 1px solid var(--edge); border-radius: var(--radius); padding: 23px; box-shadow: 0 3px 12px #1a422108; }
 .aside { background: #fbfcfa; }
 .card h2, .card h3 { margin: 0; font-weight: 750; letter-spacing: -.03em; line-height: 1.22; }
@@ -94,9 +97,5 @@ select { display: block; padding: 8px 10px; margin-top: 6px; border: 1px solid v
   .progress { gap: 4px; }
   .progress li { font-size: 11px; padding: 6px 4px; gap: 4px; }
   .progress li span { width: 17px; height: 17px; }
-  #review-form { display: contents; }
-  .assess-card { display: contents; }
-  .assess-card .mobile-top, .assess-card .mobile-bottom { background: white; border: 1px solid var(--edge); border-radius: var(--radius); padding: 17px; }
-  .workspace:has(.assess-card) .aside { grid-row: 2; }
-  .assess-card .mobile-bottom { grid-row: 3; }
+  .workspace:has(.assess-claim) .aside { grid-column: 1; grid-row: auto; }
 }
