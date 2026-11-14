@@ -1,6 +1,6 @@
 # SourceCheck
 
-**Prose word count: 296** (headings included; commands, file names and links excluded).
+**Prose word count: 280** (headings included; commands, file names and links excluded).
 
 ## Project status
 
@@ -22,7 +22,7 @@ node checks.cjs
 
 ## AI assistance
 
-ChatGPT (Codex) helped draft and implement the prototype, write the automated checks, and draft the report and storyboard. It revised the reading order and checked the two cue paths with the handler harness. The rules and numerical verdicts were checked against OpenStax and by calculation.
+I chose to focus on university students. ChatGPT (Codex) built the prototype, wrote the automated checks, drafted the report and made the storyboards. Codex checked both cue paths and verified the feedback against OpenStax.
 
 ## Additional files
 
