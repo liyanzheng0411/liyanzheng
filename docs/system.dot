@@ -1,0 +1,19 @@
+digraph SourceCheck {
+  graph [rankdir=TB, bgcolor="white", fontname="Arial", pad=.18, nodesep=.54, ranksep=.65, splines=polyline, dpi=240];
+  node [shape=box, style="rounded,filled", color="#739188", fillcolor="#e9f3ef", fontname="Arial", fontsize=17, margin=".17,.11"];
+  edge [color="#465d62", fontcolor="#34464a", fontname="Arial", fontsize=12, arrowsize=.65];
+  Student [label="University\nstudent", fillcolor="#ffffff"];
+  UI [label="Practice interface\n[Implemented]"];
+  State [label="Round controller\nCue selection and feedback\n[Implemented]"];
+  Bank [label="Scripted answer bank\n[Simulated AI]", fillcolor="#f1ecfa", color="#715ba3"];
+  Model [label="Live AI model\n[Planned]", style="rounded,dashed,filled", fillcolor="#ffffff", color="#715ba3"];
+  Source [label="OpenStax textbook\n[External source]", fillcolor="#ffffff"];
+  Student -> UI [dir=both, label=" actions / feedback "];
+  UI -> Source [label=" optional link "];
+  UI -> State [dir=both, label=" choices / view state"];
+  Bank -> State [label=" scripted claim "];
+  Model -> State [label=" generated claim ", style=dashed, color="#715ba3"];
+  State -> Model [style=invis];
+  {rank=same; Student; UI; Source;}
+  {rank=same; Bank; State; Model;}
+}
