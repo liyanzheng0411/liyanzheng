@@ -1,6 +1,6 @@
 # SourceCheck
 
-**Prose word count: 280** (headings included; commands, file names and links excluded).
+**Prose word count: 291** (headings included; commands, file names and links excluded).
 
 ## Project status
 
@@ -18,11 +18,11 @@ node checks.cjs
 
 - [7773f99](../../commit/7773f99): Built a repeatable round with two cue strategies, checking and feedback. The examples were chosen so their verdicts can be verified using textbook rules.
 - [d7394ef](../../commit/d7394ef): Moved the source before the judgement form in reading order so the option to check is reachable before submitting.
-- [9a7fd91](../../commit/9a7fd91): Added handler checks for identical claims and sources, skipping a check, feedback, revision and reset. Full browser and student testing remain to be done.
+- [9a7fd91](../../commit/9a7fd91): Added handler checks for identical claims and sources, skipping a check, feedback, revision and reset.
 
 ## AI assistance
 
-I chose to focus on university students. ChatGPT (Codex) built the prototype, wrote the automated checks, drafted the report and made the storyboards. Codex checked both cue paths and verified the feedback against OpenStax.
+I chose to study uncertainty in AI answers and narrowed the project to university students. I published the prototype on GitHub and tried both cue paths in the browser. I used ChatGPT (Codex) to build the prototype, write the automated checks, draft the report and create the storyboards. Codex checked the feedback against OpenStax.
 
 ## Additional files
 
