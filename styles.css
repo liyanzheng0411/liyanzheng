@@ -99,3 +99,7 @@ select { display: block; padding: 8px 10px; margin-top: 6px; border: 1px solid v
   .progress li span { width: 17px; height: 17px; }
   .workspace:has(.assess-claim) .aside { grid-column: 1; grid-row: auto; }
 }
+@media (max-width: 370px) {
+  .progress li { justify-content: center; }
+  .progress li span { display: none; }
+}
